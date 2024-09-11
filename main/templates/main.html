@@ -1,8 +1,93 @@
-<h1>PalgopGamepass</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PalgopGamepass</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-<h5>Name: </h5>
-<p>{{ itemPrice }}</p> <!-- Ubah sesuai dengan nama kamu -->
-<h5>NPM: </h5>
-<p> {{ itemName }}</p> <!-- Ubah sesuai dengan npm kamu -->
-<h5>Class: </h5>
-<p> {{ itemDescription }}</p> <!-- Ubah sesuai dengan kelas kamu -->
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            background: linear-gradient(90deg, #007bff, #00ff88);
+            color: white;
+            padding: 10px 0;
+            border-radius: 10px 10px 0 0;
+        }
+
+        h5 {
+            font-size: 18px;
+            margin: 15px 0 5px;
+            color: #007bff;
+        }
+        h4{
+            font-size: 18px;
+            margin: 15px 0 5px;
+            color: #f27575;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 5px 0 15px;
+            color: #555;
+        }
+
+        p.text-center {
+            text-align: center;
+        }
+
+        /* Button Style */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>PalgopGamepass</h1>
+        <h4>Selamat datang di Palgopgamepass toko ini sedang dalam pengembangan mohon ditunggu</h4>
+        
+        <h5>Name:</h5>
+        <p class="text-center">{{ name }}</p> <!-- Ganti dengan nama kamu -->
+
+        <h5>NPM:</h5>
+        <p>{{ npm  }}</p> <!-- Ganti dengan NPM kamu -->
+
+        <h5>Class:</h5>
+        <p>{{ class }}</p> <!-- Ganti dengan kelas kamu -->
+
+        <!-- Optional: Add a Button -->
+        <a href="https://github.com/Priyapta/palgop-gamepass" class="btn">More Info</a>
+    </div>
+
+</body>
+</html>
