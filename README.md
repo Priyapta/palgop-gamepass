@@ -1,5 +1,7 @@
 # PalgopGamepass 🏪
 
+## Link web -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
+
 ### Tugas 2 PBP 2024/2025
 
 ### Membuat Sebuah Projek Django Baru
