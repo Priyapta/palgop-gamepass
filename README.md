@@ -22,6 +22,8 @@ Pada aplikasi main tambahkan urls.py untuk membuat jalan kepada view.py sehingga
 
 ### Alur django
 
+![Blank board](https://github.com/user-attachments/assets/37e77fa4-34d4-410c-829a-f92bf2d5fb65)
+
 ### Fungsi Git
 Git adalah sistem kontrol versi (version control system) yang digunakan untuk melacak perubahan dalam kode atau file, memungkinkan banyak orang untuk bekerja bersama dalam sebuah proyek tanpa saling menimpa pekerjaan satu sama lain. 
 
