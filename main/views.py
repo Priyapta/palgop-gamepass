@@ -1,9 +1,9 @@
 from django.shortcuts import render
 def show_main(request):
     context = {
-        'itemName' : '2306123456',
-        'itemPrice': 'Pak Bepe',
-        'itemDescription': 'PBP E'
+        'itemName' : 'Priyapta Naufal Sudrajat',
+        'itemPrice': '2306245106',
+        'itemDescription': 'PBP D'
     }
 
     return render(request, "main.html", context)
