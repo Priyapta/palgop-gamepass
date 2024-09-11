@@ -1,6 +1,6 @@
 # PalgopGamepass 🏪
 
-## Link WEB -> http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/
+## Link WEB -> priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/
 
 ### Tugas 2 PBP 2024/2025
 
