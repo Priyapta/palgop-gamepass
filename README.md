@@ -1,4 +1,4 @@
-![Screenshot 2024-09-17 213243](https://github.com/user-attachments/assets/f1f29ba9-27da-4a28-a161-f03961efe2e4)# PalgopGamepass 🏪
+# PalgopGamepass 🏪
 
 ## Link Deployment -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
 
