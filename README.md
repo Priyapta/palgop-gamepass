@@ -2,7 +2,21 @@
 
 ## Link web -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
 
-### Tugas 2 PBP 2024/2025
+## Tugas 3 PBP 2024/2025
+
+### Mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Data delivery berguna untuk pengiriman data dalam platform. Data delivery berfungsi untuk meingirmkan data dengan tepat dan aman tanpa adanya data delivery membuat pengiriman data dalam platform tidak efisien dan tepat.
+
+### Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Penggunaan JSON lebih banyak dipakai karena secara penulisan code lebih mudah dibaca dan JSON tidak memerlukan tag tertutup sehingga menghindari kesalahan dalam menulis code.
+
+### Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Method ini berguna untuk memastikan input yang dimasukan user sesuai dengan ketentuan yang telah dibuat. Lalu, method ini akan mengembalikan kondisi True dan False jika True maka input sudah sesuai dan False jika ada data yang dimasukan user tidak sesuai.
+
+### Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak
+
+
+## Tugas 2 PBP 2024/2025
 
 ### Membuat Sebuah Projek Django Baru
 Membuat project django baru pastikan sudah terinstall django dan python lalu check version. Setelah itu membuat direktori dengan nama "E-commerce" pilihan.
@@ -34,3 +48,6 @@ Django sering digunakan sebagai framework pengenalan karena mendukung pengembang
 
 ### Mengapa model pada Django disebut ORM (Object-Relational Mapping)?
 Model dalam Django disebut ORM (Object-Relational Mapping) karena berfungsi sebagai perantara antara database relasional dan objek Python. ORM memungkinkan pengembang untuk bekerja dengan data dari database menggunakan objek Python alih-alih menulis query SQL secara langsung. Berikut alasan mengapa model Django disebut ORM:
+
+
+
