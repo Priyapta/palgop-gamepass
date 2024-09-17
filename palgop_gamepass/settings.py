@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-x)1qy$vb8gpq0t@$6z*2m!0t_&a216)dhf*6dbl+5_&so1#tml
 # SECURITY WARNING: don't run with debug turned on in production! 
 DEBUG = True
 
-ALLOWED_HOSTS = ["http://localhost", "http://127.0.0.1","priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id","http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/","https://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1","priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id"]
 
 
 # Application definition
@@ -122,3 +122,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://<URL PWS KAMU>", "https://<URL_PWS_KAMU>"]
