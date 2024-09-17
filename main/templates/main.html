@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PalgopGamepass</title>
     <style>
         body {
@@ -78,16 +76,47 @@
         
         <h5>Name:</h5>
         <p class="text-center">{{ name }}</p> <!-- Ganti dengan nama kamu -->
-
+        
         <h5>NPM:</h5>
         <p>{{ npm  }}</p> <!-- Ganti dengan NPM kamu -->
-
+        
         <h5>Class:</h5>
         <p>{{ class }}</p> <!-- Ganti dengan kelas kamu -->
 
         <!-- Optional: Add a Button -->
         <a href="https://github.com/Priyapta/palgop-gamepass" class="btn">More Info</a>
+        <a href="{% url 'main:create_product' %}" class="btn">
+          Ingin Pesan
+        </a>
     </div>
 
 </body>
 </html>
+{% if not product_entries %}
+<p> </p>
+{% else %}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Description</th>
+  </tr>
+
+  {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
+  {% endcomment %} 
+  {% for product in product_entries %}
+  <tr>
+    <td>{{product.itemName}}</td>
+    <td>{{product.itemPrice}}</td>
+    <td>{{product.itemDescription}}</td> 
+    {% comment %} <td>{{product.mood_intensity}}</td>  {% endcomment %}
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
+
+{% endblock content %}
