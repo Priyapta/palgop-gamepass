@@ -1,6 +1,6 @@
-# PalgopGamepass 🏪
+![Screenshot 2024-09-17 213243](https://github.com/user-attachments/assets/f1f29ba9-27da-4a28-a161-f03961efe2e4)# PalgopGamepass 🏪
 
-## Link web -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
+## Link Deployment -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
 
 ## Tugas 3 PBP 2024/2025
 
@@ -10,10 +10,24 @@ Data delivery berguna untuk pengiriman data dalam platform. Data delivery berfun
 ### Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 Penggunaan JSON lebih banyak dipakai karena secara penulisan code lebih mudah dibaca dan JSON tidak memerlukan tag tertutup sehingga menghindari kesalahan dalam menulis code.
 
-### Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+### Jelaskan fungsi dari method 'is_valid()' pada form Django dan mengapa kita membutuhkan method tersebut?
 Method ini berguna untuk memastikan input yang dimasukan user sesuai dengan ketentuan yang telah dibuat. Lalu, method ini akan mengembalikan kondisi True dan False jika True maka input sudah sesuai dan False jika ada data yang dimasukan user tidak sesuai.
 
-### Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak
+### Mengapa kita membutuhkan 'csrf_token' saat membuat form di Django? Apa yang dapat terjadi jika kita tidak
+csrf_token digunakan untuk melindungi data yang telah dikirimkan oleh pengguna. 'csrf_token' adalah token yang berfungsi sebagai security dan di-generate secara otomatis oleh Django untuk mencegah serangan berbahaya seperti serangan csrf (cross-site request forgery). Sebagai contoh jika data yang dikirimkan oleh pengguna kepada suatu platform atau web dan data yang sudah terautentikasi dilakukan pemalsuan seperti mengirimkan pesan email atau sms untuk memaksa user melakukan berbagai permintaan dari penyerang. Dengan menggunakan 'csrf_token' dapat menghindari dari serangan tersebut 
+
+### Screenshot
+XML
+![Screenshot 2024-09-17 213243](https://github.com/user-attachments/assets/1f3d60c4-82ac-43c3-87d3-725ead8c0826)
+JSON
+![Screenshot 2024-09-17 213107](https://github.com/user-attachments/assets/9208e4d0-9a31-4b34-95da-a35f37991cb7)
+XML ID
+![Screenshot 2024-09-17 213456](https://github.com/user-attachments/assets/3d54175a-6d5e-4c5b-8046-6d90fc6ae02c)
+JSON ID
+![Screenshot 2024-09-17 213531](https://github.com/user-attachments/assets/66d8d2fa-bc1a-4f8b-92d2-ee49383e4933)
+
+
+
 
 
 ## Tugas 2 PBP 2024/2025
