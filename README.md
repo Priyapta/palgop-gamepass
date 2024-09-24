@@ -14,14 +14,14 @@ argumen pertama berfungsi untuk mengarahkan ke User. argumen kedua berfungsi unt
 
 ### Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 - Authentication (Otentikasi)
-  -> Memverifikasi identitas pengguna, contohnya login. Authorization, Memeriksa apa saja yang boleh dilakukan pengguna, contohnya admin dapat melakukan suntingan sedangkan pengguna biasa tidak.
+  -> Memverifikasi identitas pengguna, contohnya login. Authorization, Memeriksa apa saja yang boleh dilakukan pengguna, contohnya admin dapat melakukan suntingan sedangkan pengguna biasa tidak.<br>
     Proses:
     1. Pengguna memasukkan kredensial (username/password).
     2. Sistem memeriksa apakah kredensial tersebut cocok dengan yang ada di basis data.
     3. Jika cocok, sistem mengesahkan bahwa pengguna tersebut benar.
 - Authorization (Otorisasi)
  -> adalah proses memverifikasi apakah pengguna yang sudah terotentikasi memiliki izin untuk mengakses sumber daya tertentu atau melakukan tindakan tertentu. Ini mengontrol apa      yang dapat dan tidak dapat dilakukan oleh pengguna.
-Contoh: Setelah pengguna berhasil login (authenticated), sistem memeriksa apakah pengguna tersebut memiliki izin (authorization) untuk mengakses halaman admin atau mengedit produk.
+Contoh: Setelah pengguna berhasil login (authenticated), sistem memeriksa apakah pengguna tersebut memiliki izin (authorization) untuk mengakses halaman admin atau mengedit produk.<br>
     Proses:
     1. Setelah pengguna berhasil login, sistem memeriksa peran atau izin pengguna.
     2. Sistem menentukan tindakan apa yang diizinkan untuk pengguna tersebut berdasarkan otorisasinya.
