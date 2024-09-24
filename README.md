@@ -15,26 +15,26 @@ argumen pertama berfungsi untuk mengarahkan ke User. argumen kedua berfungsi unt
 ### Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 - Authentication (Otentikasi)
   -> Memverifikasi identitas pengguna, contohnya login. Authorization, Memeriksa apa saja yang boleh dilakukan pengguna, contohnya admin dapat melakukan suntingan sedangkan pengguna biasa tidak.
-Proses:
-1. Pengguna memasukkan kredensial (username/password).
-2. Sistem memeriksa apakah kredensial tersebut cocok dengan yang ada di basis data.
-3. Jika cocok, sistem mengesahkan bahwa pengguna tersebut benar.
+    Proses:
+    1. Pengguna memasukkan kredensial (username/password).
+    2. Sistem memeriksa apakah kredensial tersebut cocok dengan yang ada di basis data.
+    3. Jika cocok, sistem mengesahkan bahwa pengguna tersebut benar.
 - Authorization (Otorisasi)
  -> adalah proses memverifikasi apakah pengguna yang sudah terotentikasi memiliki izin untuk mengakses sumber daya tertentu atau melakukan tindakan tertentu. Ini mengontrol apa      yang dapat dan tidak dapat dilakukan oleh pengguna.
 Contoh: Setelah pengguna berhasil login (authenticated), sistem memeriksa apakah pengguna tersebut memiliki izin (authorization) untuk mengakses halaman admin atau mengedit produk.
-  Proses:
-1. Setelah pengguna berhasil login, sistem memeriksa peran atau izin pengguna.
-2. Sistem menentukan tindakan apa yang diizinkan untuk pengguna tersebut berdasarkan otorisasinya.
+    Proses:
+    1. Setelah pengguna berhasil login, sistem memeriksa peran atau izin pengguna.
+    2. Sistem menentukan tindakan apa yang diizinkan untuk pengguna tersebut berdasarkan otorisasinya.
 
 Proses Saat Pengguna Login:
 - Authentication (Otentikasi)
-  1.User melakukan submisi form kredensialnya, biasanya username dan password.
-  2.View melakukan autentikasi dengan fungsi authenticate() yang akan mengecek submisi form pengguna pada database.
-  3.Jika sesuai, maka Django akan membuat sesi untuk pengguna tersebut.
+    1.User melakukan submisi form kredensialnya, biasanya username dan password.
+    2.View melakukan autentikasi dengan fungsi authenticate() yang akan mengecek submisi form pengguna pada database.
+    3.Jika sesuai, maka Django akan membuat sesi untuk pengguna tersebut.
 
 - Authorization (Otorisasi) terjadi setelah pengguna berhasil login (authenticated).
-  1.Django menggunakan middleware untuk mengelola autentikasi dan otorisasi.
-  2.Django menyimpan pengguna yang telah diotentikasi di objek request sebagai request.user
+    1.Django menggunakan middleware untuk mengelola autentikasi dan otorisasi.
+    2.Django menyimpan pengguna yang telah diotentikasi di objek request sebagai request.user
 
 ### Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
 Django mengingat pengguna yang telah login dengan menggunakan cookies dan session. Cookies dan session dapat membuat http yang stateless memiliki holding state. Django tidak menyimpan informasi secara langsung pada cookies dengan alasan keamanan. Cookies pada django hanya menyimpan rangkaian token (sessionid) yang akan dipetakan ke database server dan penggunaan cookies menggunakan memory cache dari browser sehingga tidak memerlukan memory yang besar. 
