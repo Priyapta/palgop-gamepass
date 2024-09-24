@@ -35,7 +35,7 @@
             margin: 15px 0 5px;
             color: #007bff;
         }
-        h4{
+        h4 {
             font-size: 18px;
             margin: 15px 0 5px;
             color: #f27575;
@@ -47,11 +47,6 @@
             color: #555;
         }
 
-        p.text-center {
-            text-align: center;
-        }
-
-        /* Button Style */
         .btn {
             display: inline-block;
             padding: 10px 20px;
@@ -66,6 +61,49 @@
         .btn:hover {
             background-color: #0056b3;
         }
+
+        table {
+            margin: 20px 0;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .button-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .last-login {
+            margin-top: 10px;
+            text-align: center;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -75,48 +113,43 @@
         <h4>Selamat datang di Palgopgamepass toko ini sedang dalam pengembangan mohon ditunggu</h4>
         
         <h5>Name:</h5>
-        <p class="text-center">{{ name }}</p> <!-- Ganti dengan nama kamu -->
+        <p class="text-center">{{ name }}</p>
         
         <h5>NPM:</h5>
-        <p>{{ npm  }}</p> <!-- Ganti dengan NPM kamu -->
+        <p>{{ npm }}</p>
         
         <h5>Class:</h5>
-        <p>{{ class }}</p> <!-- Ganti dengan kelas kamu -->
+        <p>{{ class }}</p>
 
-        <!-- Optional: Add a Button -->
         <a href="https://github.com/Priyapta/palgop-gamepass" class="btn">More Info</a>
-        <a href="{% url 'main:create_product' %}" class="btn">
-          Ingin Pesan
-        </a>
+        <a href="{% url 'main:create_product' %}" class="btn">Ingin Pesan</a>
+
+        {% if product_entries %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+            {% for product in product_entries %}
+            <tr>
+                <td>{{ product.itemName }}</td>
+                <td>{{ product.itemPrice }}</td>
+                <td>{{ product.itemDescription }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <div class="button-container">
+            <a href="{% url 'main:logout' %}">
+                <button>Logout</button>
+            </a>
+            <h5 class="last-login">Sesi terakhir login: {{ last_login }}</h5>
+        </div>
     </div>
 
 </body>
 </html>
-{% if not product_entries %}
-<p> </p>
-{% else %}
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Product</th>
-    <th>Price</th>
-    <th>Description</th>
-  </tr>
-
-  {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
-  {% endcomment %} 
-  {% for product in product_entries %}
-  <tr>
-    <td>{{product.itemName}}</td>
-    <td>{{product.itemPrice}}</td>
-    <td>{{product.itemDescription}}</td> 
-    {% comment %} <td>{{product.mood_intensity}}</td>  {% endcomment %}
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
-
-<br />
-
-
 {% endblock content %}
