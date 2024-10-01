@@ -1,155 +1,52 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+{% include 'navbar.html' %}
+<title>Palgop GamePass</title>
+{% endblock meta %}
+
+{% block bodytag %}class="bg-grey-900 text-white"{% endblock %}
+
 {% block content %}
-<head>
-    <title>PalgopGamepass</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            background: linear-gradient(90deg, #007bff, #00ff88);
-            color: white;
-            padding: 10px 0;
-            border-radius: 10px 10px 0 0;
-        }
-
-        h5 {
-            font-size: 18px;
-            margin: 15px 0 5px;
-            color: #007bff;
-        }
-        h4 {
-            font-size: 18px;
-            margin: 15px 0 5px;
-            color: #f27575;
-        }
-
-        p {
-            font-size: 16px;
-            margin: 5px 0 15px;
-            color: #555;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        table {
-            margin: 20px 0;
-            width: 100%;
-            text-align: left;
-            border-collapse: collapse;
-        }
-
-        table th, table td {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .button-container {
-            margin-top: 20px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .button-container button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .button-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .last-login {
-            margin-top: 10px;
-            text-align: center;
-            color: #333;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card">
-        <h1>PalgopGamepass</h1>
-        <h4>Selamat datang di Palgopgamepass toko ini sedang dalam pengembangan mohon ditunggu</h4>
-        
-        <h5>Name:</h5>
-        <p class="text-center">{{ name }}</p>
-        
-        <h5>NPM:</h5>
-        <p>{{ npm }}</p>
-        
-        <h5>Class:</h5>
-        <p>{{ class }}</p>
-
-        <a href="https://github.com/Priyapta/palgop-gamepass" class="btn">More Info</a>
-        <a href="{% url 'main:create_product' %}" class="btn">Ingin Pesan</a>
-
-        {% if product_entries %}
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Description</th>
-            </tr>
-            {% for product in product_entries %}
-            <tr>
-                <td>{{ product.itemName }}</td>
-                <td>{{ product.itemPrice }}</td>
-                <td>{{ product.itemDescription }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% endif %}
-
-        <div class="button-container">
-            <a href="{% url 'main:logout' %}">
-                <button>Logout</button>
-            </a>
-            <h5 class="last-login">Sesi terakhir login: {{ last_login }}</h5>
-        </div>
+<div class="container mx-auto min-h-screen p-4">
+    <div class="p-6 text-3xl font-bold text-right">
+        <a class="text-purple-500 hover:text-purple-400 transition duration-300">Palgop <br>GamePass</a>
     </div>
 
-</body>
-</html>
+    <span class="block text-cyan-400 px-3 py-2">Hello, {{ user.username }}</span>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {% include "card_info.html" with title='NPM' value=npm %}
+        {% include "card_info.html" with title='Name' value=name %}
+        {% include "card_info.html" with title='Class' value=class %}
+    </div>
+    
+    <div class="fixed bottom-4 left-4 bg-gray-800 rounded-lg shadow-lg p-3">
+        <h2 class="text-sm font-semibold text-cyan-400">Last Login</h2>
+        <p class="text-white">{{last_login}}</p>
+    </div>
+
+    <div class="flex justify-center mb-8">
+        <a href="{% url 'main:create_product' %}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+            Add New Product
+        </a>
+    </div>
+
+    <div class="mb-8">
+        {% if not product_entries %}
+        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6 bg-gray-800 rounded-lg">
+            <p class="text-center text-gray-400 mt-4">No Products Available</p>
+        </div>
+        {% else %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
+                {% for product in product_entries %}
+                {% include "card_product.html" with product=product %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    
+</div>
 {% endblock content %}
