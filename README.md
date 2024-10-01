@@ -21,9 +21,12 @@ Keuntungan Responsive Design
 
 contoh responsive :
 Desktop 
-![image](https://github.com/user-attachments/assets/1cebb33e-301f-4964-85fd-f6ca7a19448f)<br>
-Mobile<br>
+![image](https://github.com/user-attachments/assets/1cebb33e-301f-4964-85fd-f6ca7a19448f)
+<br>
+Mobile
+<br>
 ![image](https://github.com/user-attachments/assets/d9b8ee27-ebf6-4644-a31a-17880f854a0c)
+<br>
 
 ### Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
 1. Margin: Ruang di luar elemen, antara elemen dengan elemen lainnya.
