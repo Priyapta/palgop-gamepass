@@ -21,8 +21,8 @@ Keuntungan Responsive Design
 
 contoh responsive :
 Desktop 
-![image](https://github.com/user-attachments/assets/1cebb33e-301f-4964-85fd-f6ca7a19448f)
-Mobile
+![image](https://github.com/user-attachments/assets/1cebb33e-301f-4964-85fd-f6ca7a19448f)<br>
+Mobile<br>
 ![image](https://github.com/user-attachments/assets/d9b8ee27-ebf6-4644-a31a-17880f854a0c)
 
 ### Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
@@ -68,8 +68,8 @@ from main.views import delete_product, edit_product
 ```
 Masih di berkas yang sama, tambahkan path berikut pada urlpatterns
 ```javascript
-path('edit-progress/<int:id>', edit_progress, name='edit_progress'),
-path('delete/<int:id>', delete_progress, name='delete_progress'),
+path('edit-product/<int:id>', edit_progress, name='edit_product'),
+path('delete/<int:id>', delete_product, name='delete_product'),
 ```
 
 
