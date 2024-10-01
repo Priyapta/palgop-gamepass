@@ -32,7 +32,9 @@ Mobile
 1. Margin: Ruang di luar elemen, antara elemen dengan elemen lainnya.
 2. Border: Garis yang membungkus elemen, terletak di antara margin dan padding.
 3. Padding: Ruang di dalam elemen, antara konten dan border.
+<br>
 Contoh
+<br>
 ![image](https://github.com/user-attachments/assets/76c5772b-3d66-4042-99dd-bf05421fcf5d)
 
 ### Konsep Flexbox dan Grid Layout
