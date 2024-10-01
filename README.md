@@ -2,6 +2,80 @@
 
 ## Link Deployment -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
 
+## Tugas 5 PBP 2024/2025
+
+### Urutan Prioritas CSS Selector
+1. Inline Styles (misalnya style="color: red;") memiliki prioritas tertinggi.
+2. ID Selector (misalnya #header) 
+3. Class Selector (misalnya .navbar :hover) 
+4. Tag Selector (misalnya h1, p , div) 
+5. Important Rule (!important) untuk override styling sebelumnya.
+
+### Mengapa Responsive Design Penting?
+Responsive Design merupakan design yang dapat berubah sesuai dengan pemakaian perangkat pastinya tampilan web dari desktop dan mobile berbeda karena space dari web itu sendiri. Penggunaan responsive design ini tentu sangat penting dalam pengembangan web.
+
+Keuntungan Responsive Design
+- Pengalaman Pengguna lebih baik
+- Cakupan perangkat lebih luas
+- Pengelolaan lebih efisien (tidak perlu membuat terpisah versi desktop dan mobile)
+
+contoh responsive :
+Desktop 
+![image](https://github.com/user-attachments/assets/1cebb33e-301f-4964-85fd-f6ca7a19448f)
+Mobile
+![image](https://github.com/user-attachments/assets/d9b8ee27-ebf6-4644-a31a-17880f854a0c)
+
+### Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+1. Margin: Ruang di luar elemen, antara elemen dengan elemen lainnya.
+2. Border: Garis yang membungkus elemen, terletak di antara margin dan padding.
+3. Padding: Ruang di dalam elemen, antara konten dan border.
+Contoh
+![image](https://github.com/user-attachments/assets/76c5772b-3d66-4042-99dd-bf05421fcf5d)
+
+### Konsep Flexbox dan Grid Layout
+**Flexbox** dirancang untuk tata letak satu dimensi (baris atau kolom), yang memungkinkan elemen di dalam sebuah container untuk disusun dan didistribusikan secara fleksibel, baik dalam arah horizontal maupun vertikal.
+**CSS Grid Layout** dirancang untuk tata letak dua dimensi (baris dan kolom). Ini memungkinkan untuk membuat tata letak yang lebih kompleks, seperti membagi halaman web menjadi beberapa area yang ditata dengan lebih terstruktur.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+Melakukan kustomisasi pada halaman login, register, dan main
+Untuk melakukan kusotmisasi, kita dapat menambahkan beberapa style pada bagian-bagian yang ingin dikustomisasi. Seperti pada study-tracker ini, saya sudah mengkustomisasi daftar item menjadi menggunakan card, mengkustomisasi tombol, mengatur posisi teks, dan mengatur warna latar belakang website.
+
+Menambahkan Fitur Update dan Delete untuk Masing-Masing Item
+Di berkas views.py pada folder main, tambahkan fungsi delete dan update.
+```javascript
+def delete_product(request, id):
+   progress = Progress.objects.get(pk = id)
+   progress.delete()
+   return HttpResponseRedirect(reverse('main:show_main'))
+```
+
+```javascript
+ def edit_product(request, id):
+ progress = Progress.objects.get(pk = id)
+ form = ProgressForm(request.POST or None, instance=progress)
+
+ if form.is_valid() and request.method == "POST":
+     form.save()
+     return HttpResponseRedirect(reverse('main:show_main'))
+
+ context = {'form': form}
+ return render(request, "edit_progress.html", context)
+```
+
+Di folder yang sama, buka berkas urls.py, lalu import fungsi delete dan edit.
+```python
+from main.views import delete_product, edit_product
+```
+Masih di berkas yang sama, tambahkan path berikut pada urlpatterns
+```javascript
+path('edit-progress/<int:id>', edit_progress, name='edit_progress'),
+path('delete/<int:id>', delete_progress, name='delete_progress'),
+```
+
+
+
+
+
 ## Tugas 4 PBP 2024/2025
 
 ### Apa perbedaan antara HttpResponseRedirect() dan redirect()
