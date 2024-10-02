@@ -5,11 +5,11 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center w-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center w-screen bg-black-900 py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
     <div>
-      <h2 class="mt-6 text-center text-black text-3xl font-extrabold text-gray-900">
-        Login to your account
+      <h2 class="mt-6 text-center text-purple-700 text-3xl font-extrabold text-gray-900">
+        PalgopGamePass
       </h2>
     </div>
     <form class="mt-8 space-y-6" method="POST" action="">
@@ -54,9 +54,9 @@
     {% endif %}
 
     <div class="text-center mt-4">
-      <p class="text-sm text-black">
+      <p class="text-sm text-white">
         Don't have an account yet?
-        <a href="{% url 'main:register' %}" class="font-medium text-indigo-200 hover:text-indigo-300">
+        <a href="{% url 'main:register' %}" class="font-medium text-indigo-400 hover:text-indigo-300">
           Register Now
         </a>
       </p>
