@@ -27,26 +27,159 @@
         <p class="text-white">{{last_login}}</p>
     </div>
 
-    <div class="flex justify-center mb-8">
+    <div class="flex justify-between mb-8">
         <a href="{% url 'main:create_product' %}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
             Add New Product
         </a>
+        <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+            Add New Product
+          </button>
+        
     </div>
 
     <div class="mb-8">
-        {% if not product_entries %}
-        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6 bg-gray-800 rounded-lg">
-            <p class="text-center text-gray-400 mt-4">No Products Available</p>
-        </div>
-        {% else %}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-                {% for product in product_entries %}
-                {% include "card_product.html" with product=product %}
-                {% endfor %}
+        <div id="product_entry_cards"></div>
+        <div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+            <div id="crudModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Add New Product
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="px-6 py-4 space-y-6 form-style">
+                    <form id="productEntryForm">
+                        <div class="mb-4">
+                            <label for="item_name" class="block text-sm font-medium text-gray-700">item_name</label>
+                            <input type="text" id="item_name" name="item_name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter your mood" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="item_price" class="block text-sm font-medium text-gray-700">item_price</label>
+                            <textarea id="item_price" name="item_price" rows="3" class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Describe your item_price" required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="item_description" class="block text-sm font-medium text-gray-700">Mood Intensity (1-10)</label>
+                            <input type="number" id="item_description" name="item_description" min="1" max="10" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required>
+                        </div>
+                    </form>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+                    <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
+                    <button type="submit" id="submitProductEntry" form="productEntryForm" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+                </div>
             </div>
-        {% endif %}
+        </div>
     </div>
 
     
 </div>
+<script>
+    function addproductEntry() {
+    fetch("{% url 'main:add_product_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#productEntryForm')),
+    })
+    .then(response => refreshProductEntries())
+    .catch(error => console.error('Error:', error));
+
+    document.getElementById("productEntryForm").reset(); 
+    document.querySelector("[data-modal-toggle='crudModal']").click();
+
+    return false;
+  }
+    const modal = document.getElementById('crudModal');
+    const modalContent = document.getElementById('crudModalContent');
+  
+    function showModal() {
+        const modal = document.getElementById('crudModal');
+        const modalContent = document.getElementById('crudModalContent');
+  
+        modal.classList.remove('hidden'); 
+        setTimeout(() => {
+          modalContent.classList.remove('opacity-0', 'scale-95');
+          modalContent.classList.add('opacity-100', 'scale-100');
+        }, 50); 
+    }
+  
+    function hideModal() {
+        const modal = document.getElementById('crudModal');
+        const modalContent = document.getElementById('crudModalContent');
+  
+        modalContent.classList.remove('opacity-100', 'scale-100');
+        modalContent.classList.add('opacity-0', 'scale-95');
+  
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 150); 
+    }
+  
+    document.getElementById("cancelButton").addEventListener("click", hideModal);
+    document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+    async function getProductEntries(){
+      
+      
+        return fetch("{% url 'main:show_json' %}").then((res) => res.json());
+
+    }
+    async function refreshProductEntries() {
+        document.getElementById("product_entry_cards").innerHTML = "";
+        document.getElementById("product_entry_cards").className = "";
+        
+        const productEntries = await getProductEntries(); // Fetch the product entries from your backend
+        let htmlString = "";
+        let classNameString = "";
+    
+        if (productEntries.length === 0) {
+            classNameString = "flex flex-col items-center justify-center min-h-[24rem] p-6";
+            htmlString = `
+                <div class="flex flex-col items-center justify-center min-h-[24rem] p-6 bg-gray-800 rounded-lg">
+                        <p class="text-center text-gray-400 mt-4">No Products Available</p>
+                 </div>
+            `;
+        } else {
+            
+            classNameString = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"; // Adjust grid structure for products
+            productEntries.forEach((item) => {
+                htmlString += `
+                  <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl hover:scale-105">
+  <div class="p-4">
+      <h3 class="text-xl font-semibold text-purple-400 mb-2">${item.fields.item_name }</h3>
+      <p class="text-gray-300 mb-2">Price: ${item.fields.item_price }</p>
+      <p class="text-gray-400 text-sm mb-4">${ item.fields.item_description }</p>
+      <div class="flex items-center justify-between">
+          <span class="text-cyan-400 text-sm">Amount: ${ item.fields.item_price }</span>
+          <div class="space-x-3">
+              <a href="/edit-product/${item.pk}"class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2 px-4 rounded transition duration-300">
+                  Edit
+              </a>
+              <a href="/delete/${item.pk}" class="bg-red-600 hover:bg-red-800 text-white text-sm font-bold py-2 px-4 rounded transition duration-300">
+                  Delete
+              </a> 
+          </div>
+      </div>
+  </div>
+</div>`;
+            });
+          
+        }
+
+    
+        document.getElementById("product_entry_cards").className = classNameString;
+        document.getElementById("product_entry_cards").innerHTML = htmlString;
+        document.getElementById("productEntryForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            addproductEntry();
+          })
+    
+    }
+    refreshProductEntries();
+  </script>
 {% endblock content %}
