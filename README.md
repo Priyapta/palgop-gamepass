@@ -3,6 +3,22 @@
 ## Link Deployment -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
 
 ##  Tugas 6 PBP 2024/2025
+### Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+Dalam mengenmbangkan aplikasi web java script berguna untuk:
+1. Membuat validasi terhadap form
+2. Event handling
+3. AJAX request
+4. Animasi dari tiap komponen dalam web
+5. Membuat web menjadi responsive
+
+### Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Dalam penggunaan await saat kita mengguakan fetch yaitu menuggu data yang ada di server untuk  di load terlebih dahulu sehingga proses akan berjalan setelah data sudah diambil dari server lalu akan mengeksekusi program selanjutnya 
+
+### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 ## Tugas 5 PBP 2024/2025
 
