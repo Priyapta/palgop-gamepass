@@ -2,6 +2,8 @@
 
 ## Link Deployment -> [PalgopGamepass](http://priyapta-naufal-palgopgamepass.pbp.cs.ui.ac.id/)
 
+##  Tugas 6 PBP 2024/2025
+
 ## Tugas 5 PBP 2024/2025
 
 ### Urutan Prioritas CSS Selector
