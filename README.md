@@ -15,8 +15,20 @@ Dalam mengenmbangkan aplikasi web java script berguna untuk:
 Dalam penggunaan await saat kita mengguakan fetch yaitu menuggu data yang ada di server untuk  di load terlebih dahulu sehingga proses akan berjalan setelah data sudah diambil dari server lalu akan mengeksekusi program selanjutnya 
 
 ### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+CSRF (Cross-Site Request Forgery) adalah mekanisme keamanan di Django yang memastikan permintaan POST berasal dari sumber yang sah. Namun, ketika menggunakan AJAX POST, permintaan ini sering kali tidak membawa token CSRF secara otomatis, sehingga bisa memicu kegagalan validasi CSRF.
+
+Decorator @csrf_exempt digunakan untuk menonaktifkan pengecekan CSRF pada view tertentu. Ini bermanfaat pada situasi berikut:
+
+Permintaan dari sumber terpercaya: Misalnya, jika AJAX request berasal dari bagian aplikasi yang hanya bisa diakses oleh pengguna yang telah diverifikasi.
+Mencegah kegagalan permintaan: Tanpa decorator ini, AJAX POST tanpa token CSRF akan ditolak oleh Django.
+Namun, penting untuk menggunakan decorator ini dengan hati-hati karena menonaktifkan mekanisme keamanan penting. Pastikan untuk tetap menjaga keamanan dengan memastikan bahwa hanya request yang aman yang dapat mencapai view ini
 
 ### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Pembersihan data input pengguna di backend tetap dilakukan meskipun sudah ada validasi di frontend karena beberapa alasan penting:
+
+- Keamanan: Validasi dan pembersihan data di frontend dapat dilewati oleh pengguna yang memanipulasi request menggunakan alat seperti Postman atau dengan menonaktifkan JavaScript. Backend adalah tempat yang lebih aman untuk memverifikasi data input.
+- Integritas Data: Backend bertanggung jawab untuk memastikan bahwa semua data yang masuk ke dalam sistem sesuai dengan aturan yang telah ditentukan. Jika hanya mengandalkan validasi frontend, data yang tidak valid bisa tetap masuk ke database.
+- Menangani Serangan: Serangan seperti injection (misalnya, SQL injection atau XSS) dapat terjadi jika data tidak disanitasi dengan baik di backend. Validasi dan pembersihan input di backend sangat penting untuk mencegah eksploitasi tersebut.
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
