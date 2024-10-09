@@ -76,11 +76,11 @@ Selanjutnya, buat sebuah fungsi dalam script untuk dapat menghubungkan modal den
     function addProduct() {
     fetch("{% url 'main:add_product_ajax' %}", {
       method: "POST",
-      body: new FormData(document.querySelector('#productForm')),
+      body: new FormData(document.querySelector('#productEntryForm')),
     })
     .then(response => refreshProductEntries())
 
-    document.getElementById("productForm").reset(); 
+    document.getElementById("productEntryForm").reset(); 
     hideModal();
     
     return false;
