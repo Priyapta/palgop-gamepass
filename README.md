@@ -32,6 +32,84 @@ Pembersihan data input pengguna di backend tetap dilakukan meskipun sudah ada va
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
+Buat fungsi untuk menerima dan menambahkan data dari AJAX
+Untuk dapat menjalankan AJAX, hal pertama yang perlu dilakukan adalah dengan menambahkan sebuah fungsi add_product_ajax pada views.py agar dapat digunakan. Aktifkan decorator @require_POST dan @csrf_exempt untuk menunjang jalannya POST lewat AJAX.
+```javascript
+@csrf_exempt
+@require_POST
+def add_product_entry_ajax(request):
+    item_name = strip_tags(request.POST.get("item_name"))
+    item_price = strip_tags(request.POST.get("item_price"))
+    item_description = strip_tags(request.POST.get("item_description"))
+    print(item_name,item_price,item_description)
+    user = request.user
+
+    new_product = Product(
+        item_name=item_name,
+        item_price=item_price,
+        item_description=item_description,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+```
+Tambahkan juga method strip_tags() agar data yang dikirim "bersih" dari segala tags. Selanjutnya routing fungsi tersebut di urls.py agar dapat digunakan dan disambungkan.
+
+urlpatterns = [
+...
+    path('add-product-ajax', add_product_ajax, name='add_product_ajax')
+...
+]
+Tampilkan data pada main.html
+Buat sebuah script JS di dalam main.html untuk dapat memperoleh data dalam bentuk JSON dengan menggunakan method fetch. Lalu ganti product_card.html dengan
+
+<div id="product_entry_cards"></div>
+Mulai sekarang, tampilan data akan diatur di dalam script JS yang memiliki id product_cards. Lalu buat method refreshProductEntries yang berguna untuk mengatur tampilan card saat produk kosong dan produk ada. Lalu panggil method tersebut di dalam script.
+
+Membuat modal input AJAX di main.html
+Pada main.html, buat sebuah modal AJAX agar user dapat input properti-properti dari product tanpa harus pindah halaman. Selanjutnya buat fungsi hideModal() dan showModal() untuk dapat memperlihatkan dan menyembunyikan modal saat tidak dipakai. Jangan lupa bind sebuah button yang sudah terhubung pada modal ke fungsi hideModal() dan showModal() agar dapat dipakai. Terakhir, buat sebuah button 'Add New Product with AJAX'
+
+Menambahkan data AJAX melalui script
+Selanjutnya, buat sebuah fungsi dalam script untuk dapat menghubungkan modal dengan fungsi add_product_ajax di views.py dengan menggunakan method fetch(). Di dalamnya jangan lupa untuk memanggil fungsi hideModal() agar modal dapat tertutup setelah selesai menambahkan produk lewat AJAX.
+```javascript
+    function addProduct() {
+    fetch("{% url 'main:add_product_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#productForm')),
+    })
+    .then(response => refreshProductEntries())
+
+    document.getElementById("productForm").reset(); 
+    hideModal();
+    
+    return false;
+    }
+```
+Terakhir, tambahkan event listener dari submit di Modal AJAX yang memiliki id 'productForm'. agar dapat menjalankan fungsi addProduct() sehingga pengaplikasian AJAX dapat berjalan secara lancar.
+```javascript
+document.getElementById("productForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    addProduct();
+    })
+```
+Sebagai tambahan, untuk mengaplikasikan pembersihan data menggunakan strip_tags(), tambahkan fungsi-fungsi untuk mengembalikan data melalui forms.py secara "bersih"
+```javascript
+class ProductForm(ModelForm):
+    ...
+     def clean_itemName(self):
+        item_name = self.cleaned_data["item_name"]
+        return strip_tags(item_name)
+    
+    def clean_itemDescription(self):
+        item_description = self.cleaned_data["item_description"]
+        return strip_tags(item_description)
+    
+    def clean_item_price(self):
+        item_price = self.cleaned_data["item_price"]
+        return strip_tags(item_price)
+    ...
+```
 ## Tugas 5 PBP 2024/2025
 
 ### Urutan Prioritas CSS Selector
